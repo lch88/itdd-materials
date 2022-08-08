@@ -31,7 +31,6 @@
 /// THE SOFTWARE.
 
 import Foundation
-import UIKit
 
 let userLoggedOutNotification =
  Notification.Name("user logged out")
