@@ -51,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     AppDelegate.configuration = Configuration.load()
     api = API(server: AppDelegate.configuration.server)
-
+    setupListeners()
+    
     return true
   }
 
@@ -59,6 +60,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let loginController = storyboard.instantiateViewController(withIdentifier: "login") as? LoginViewController
     rootController = loginController
+  }
+  
+  func setupListeners() {
+    NotificationCenter.default
+      .addObserver(
+        forName: userLoggedOutNotification,
+        object: nil,
+        queue: .main) { _ in
+          self.showLogin()
+      }
   }
 }
 

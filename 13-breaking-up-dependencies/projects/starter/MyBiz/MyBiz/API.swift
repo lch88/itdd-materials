@@ -113,7 +113,8 @@ class API {
   func logout() {
     token = nil
     delegate = nil
-    UIApplication.appDelegate.showLogin()
+    let note = Notification(name: userLoggedOutNotification)
+    NotificationCenter.default.post(note)
   }
 
   //swiftlint:disable identifier_name
