@@ -116,6 +116,10 @@ class MockAPI: API {
   var mockEvents: [Event] = []
   var mockEmployees: [Employee] = []
   var mockError: Error?
+  
+  init() {
+    super.init(server: "http://mockserver")
+  }
 
   // MARK: - Events
   override func getEvents() {

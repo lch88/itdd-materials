@@ -51,13 +51,14 @@ protocol APIDelegate: AnyObject {
 }
 
 class API {
-  let server = AppDelegate.configuration.server
+  let server: String
   let session: URLSession
 
   weak var delegate: APIDelegate?
   var token: Token?
 
-  init() {
+  init(server: String) {
+    self.server = server
     session = URLSession(configuration: .default)
   }
 
