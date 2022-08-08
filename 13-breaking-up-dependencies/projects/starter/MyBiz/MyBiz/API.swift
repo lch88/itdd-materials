@@ -32,6 +32,13 @@
 
 import Foundation
 
+let userLoggedInNotification =
+  Notification.Name("user logged in")
+
+enum UserNotificationKey: String {
+  case userId
+}
+
 let userLoggedOutNotification =
  Notification.Name("user logged out")
 

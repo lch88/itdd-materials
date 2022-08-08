@@ -64,4 +64,24 @@ class APITests: XCTestCase {
     wait(for: [exp], timeout: 1)
     XCTAssertNil(sut.token)
   }
+  
+  func testAPI_whenLogin_generatesANotification() {
+    // given
+    var userInfo: [AnyHashable: Any]?
+    let exp = expectation(
+      forNotification: userLoggedInNotification,
+      object: nil) { note in
+        userInfo = note.userInfo
+        return true
+      }
+    // when
+    sut.login(username: "test", password: "test")
+    // then
+    wait(for: [exp], timeout: 1)
+    let userId = userInfo?[UserNotificationKey.userId]
+    
+    XCTAssertNotNil(
+      userId,
+      "the login notification should also have a user id")
+  }
 }
