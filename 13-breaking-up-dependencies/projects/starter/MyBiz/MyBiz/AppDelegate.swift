@@ -71,6 +71,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         queue: .main) { _ in
           self.showLogin()
       }
+    
+    NotificationCenter.default
+      .addObserver(
+        forName: userLoggedInNotification,
+        object: nil,
+        queue: .main) { note in
+          if let userId =
+            note.userInfo?[UserNotificationKey.userId] as? String {
+              self.handleLogin(userId: userId)
+          }
+    }
+  }
+  
+  func handleLogin(userId: String) {
+    self.userId = userId
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let tabController =
+      storyboard.instantiateViewController(
+        withIdentifier: "tabController")
+    rootController = tabController
   }
 }
 

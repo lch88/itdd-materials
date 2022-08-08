@@ -78,9 +78,6 @@ extension LoginViewController: APIDelegate {
   }
 
   func loginSucceeded(userId: String) {
-    UIApplication.appDelegate.userId = userId
-    if let tabController = storyboard?.instantiateViewController(withIdentifier: "tabController") {
-      UIApplication.appDelegate.rootController = tabController
-    }
+
   }
 }

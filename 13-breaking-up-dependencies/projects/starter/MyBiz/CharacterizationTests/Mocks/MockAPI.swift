@@ -142,4 +142,9 @@ class MockAPI: API {
       }
     }
   }
+  
+  override func login(username: String, password: String) {
+    let token = Token(token: username, userID: UUID())
+    handleToken(token: token)
+  }
 }

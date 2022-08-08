@@ -112,6 +112,13 @@ class API {
     self.token = token
     Logger.logDebug("user \(token.user.id)")
     DispatchQueue.main.async {
+      let note = Notification(
+        name: userLoggedInNotification,
+        object: self,
+        userInfo: [
+          UserNotificationKey.userId: token.user.id.uuidString
+        ])
+      NotificationCenter.default.post(note)
       self.delegate?.loginSucceeded(userId: token.user.id.uuidString)
     }
   }
