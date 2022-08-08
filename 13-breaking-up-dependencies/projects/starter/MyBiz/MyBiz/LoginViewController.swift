@@ -74,7 +74,18 @@ extension LoginViewController: APIDelegate {
   func userFailed(error: Error) {}
 
   func loginFailed(error: Error) {
-    showAlert(title: "Login Failed", subtitle: error.localizedDescription, type: .login, skin: .loginAlert)
+    let retryAction = ErrorViewController.SecondaryAction(
+      title: "Try Again") { [weak self] in
+        if let self = self {
+          self.signIn(self)
+        }
+      }
+    
+    showAlert(
+        title: "Login Failed",
+        subtitle: error.localizedDescription,
+        action: retryAction,
+        skin: .loginAlert)
   }
 
   func loginSucceeded(userId: String) {

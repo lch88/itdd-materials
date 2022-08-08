@@ -33,39 +33,39 @@
 import UIKit
 
 class ErrorViewController: UIViewController {
+  struct SecondaryAction {
+    let title: String
+    let action: () -> Void
+  }
+  
   enum AlertType {
     case login
     case general
   }
-
+  
   @IBOutlet weak var okButton: UIButton!
   @IBOutlet weak var secondaryButton: UIButton!
   @IBOutlet weak var alertView: UIView!
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var subtitleLabel: UILabel!
-
-  var type: AlertType = .general
+  
+  var secondaryAction: SecondaryAction?
   var alertTitle: String = ""
   var subtitle: String?
   var skin: Skin?
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     alertView.layer.cornerRadius = 12
     alertView.layer.masksToBounds = true
-
-    switch type {
-    case .general:
-      secondaryButton.removeFromSuperview()
-    case .login:
-      setupLogin()
-    }
-
+    
+    updateAction()
+    
     updateTitles()
     updateSkin()
   }
-
+  
   private func updateTitles() {
     titleLabel.text = alertTitle
     if let subtitle = subtitle {
@@ -74,7 +74,7 @@ class ErrorViewController: UIViewController {
       subtitleLabel.isHidden = true
     }
   }
-
+  
   private func updateSkin() {
     guard let skin = skin else { return }
     Styler.shared.style(
@@ -82,28 +82,29 @@ class ErrorViewController: UIViewController {
       buttons: [okButton, secondaryButton],
       with: skin)
   }
-
+  
   func set(title: String, subtitle: String?) {
     self.alertTitle = title
     self.subtitle = subtitle
   }
-
-  private func setupLogin() {
-    secondaryButton.setTitle("Try Again", for: .normal)
+  
+  private func updateAction() {
+    guard let action = secondaryAction else {
+      secondaryButton.removeFromSuperview()
+      return
+    }
+    secondaryButton.setTitle(action.title, for: .normal)
   }
-
+  
   @IBAction func okAction(_ sender: Any) {
     self.dismiss(animated: true)
   }
-
+  
   @IBAction func secondaryAction(_ sender: Any) {
-    switch type {
-    case .login:
-      let loginVC = presentingViewController as? LoginViewController
-      self.dismiss(animated: true) {
-        loginVC?.signIn(self)
-      }
-    default:
+    if let action = secondaryAction {
+      dismiss(animated: true)
+      action.action()
+    } else {
       Logger.logFatal("no action defined.")
     }
   }

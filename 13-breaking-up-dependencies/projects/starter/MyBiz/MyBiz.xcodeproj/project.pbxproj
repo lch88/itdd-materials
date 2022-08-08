@@ -73,6 +73,7 @@
 		4C68968B273884D100337089 /* CalendarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C68968A273884D100337089 /* CalendarViewControllerTests.swift */; };
 		8350E1A628A1AF4200A3FA12 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350E1A528A1AF4200A3FA12 /* APITests.swift */; };
 		8350E1A828A1B60500A3FA12 /* ErrorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350E1A728A1B60500A3FA12 /* ErrorViewControllerTests.swift */; };
+		8350E1AA28A1B86400A3FA12 /* ErrorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350E1A928A1B86400A3FA12 /* ErrorViewControllerTests.swift */; };
 		836E19FF2898A54600565E9B /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836E19FE2898A54600565E9B /* LoginViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +164,7 @@
 		4C68968A273884D100337089 /* CalendarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerTests.swift; sourceTree = "<group>"; };
 		8350E1A528A1AF4200A3FA12 /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		8350E1A728A1B60500A3FA12 /* ErrorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewControllerTests.swift; sourceTree = "<group>"; };
+		8350E1A928A1B86400A3FA12 /* ErrorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewControllerTests.swift; sourceTree = "<group>"; };
 		836E19FE2898A54600565E9B /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -327,6 +329,7 @@
 				4C6896842738554100337089 /* CalendarModelTests.swift */,
 				4C68968A273884D100337089 /* CalendarViewControllerTests.swift */,
 				8350E1A528A1AF4200A3FA12 /* APITests.swift */,
+				8350E1A928A1B86400A3FA12 /* ErrorViewControllerTests.swift */,
 			);
 			path = Cases;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C68968927385A7500337089 /* MockAPI.swift in Sources */,
+				8350E1AA28A1B86400A3FA12 /* ErrorViewControllerTests.swift in Sources */,
 				4C68968B273884D100337089 /* CalendarViewControllerTests.swift in Sources */,
 				8350E1A628A1AF4200A3FA12 /* APITests.swift in Sources */,
 				4C6896852738554100337089 /* CalendarModelTests.swift in Sources */,

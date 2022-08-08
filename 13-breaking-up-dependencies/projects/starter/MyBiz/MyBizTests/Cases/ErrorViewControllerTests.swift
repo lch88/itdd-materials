@@ -48,32 +48,31 @@ class ErrorViewControllerTests: XCTestCase {
     try super.tearDownWithError()
   }
   
-  func whenDefault() {
-    sut.loadViewIfNeeded()
-  }
-  
-  func whenSetToLogin() {
-    sut.secondaryAction = .init(title: "Try Again") {}
-    sut.loadViewIfNeeded()
-  }
-  
-  func testViewController_whenSetToLogin_primaryButtonIsOK() {
+  func testSecondaryButton_whenActionSet_hasCorrectTitle() {
+    // given
+    let action = ErrorViewController.SecondaryAction(
+      title: "title") {}
+    sut.secondaryAction = action
     // when
-    whenSetToLogin()
+    sut.loadViewIfNeeded()
     // then
-    XCTAssertEqual(sut.okButton.currentTitle, "OK")
+    XCTAssertEqual(sut.secondaryButton.currentTitle, "title")
   }
-  
-  func testViewController_whenSetToLogin_showsTryAgainButton() {
+  func testSecondaryAction_whenButtonTapped_isInvoked() {
+    // given
+    let exp = expectation(description: "secondary action")
+    var actionHappened = false
+    let action = ErrorViewController.SecondaryAction(
+      title: "action") {
+        actionHappened = true
+        exp.fulfill()
+      }
+    sut.secondaryAction = action
+    sut.loadViewIfNeeded()
     // when
-    whenSetToLogin()
+    sut.secondaryAction(())
     // then
-    XCTAssertFalse(sut.secondaryButton.isHidden)
-    XCTAssertEqual(
-      sut.secondaryButton.currentTitle,
-      "Try Again")
-  }
-  
-  func testViewController_whenDefault_secondaryButtonIsHidden() {
+    wait(for: [exp], timeout: 1)
+    XCTAssertTrue(actionHappened)
   }
 }
