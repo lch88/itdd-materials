@@ -72,4 +72,39 @@ class LoginViewControllerTests: XCTestCase {
       UIApplication.appDelegate.userId,
       "a successful login sets valid user id")
   }
+  
+  func testSignIn_WithBadCredentials_showsError() {
+    // given
+    sut.emailField.text = "bad@credentials.ca"
+    sut.passwordField.text = "Shazam!"
+    
+    // when
+    let predicate = NSPredicate { _, _ -> Bool in
+      UIApplication.appDelegate
+        .rootController?.presentedViewController != nil
+    }
+    let exp = expectation(
+      for: predicate,
+      evaluatedWith: sut,
+      handler: nil)
+    sut.signIn(sut.signInButton!)
+    // then
+    wait(for: [exp], timeout: 5)
+    let presentedController =
+    UIApplication.appDelegate
+      .rootController?
+      .presentedViewController
+    as? ErrorViewController
+    XCTAssertNotNil(
+      presentedController,
+      "should be showing an error controller")
+    XCTAssertEqual(
+      presentedController?.alertTitle,
+      "Login Failed")
+    XCTAssertEqual(
+      presentedController?.subtitle,
+      "Unauthorized")
+  }
+  
 }
+
