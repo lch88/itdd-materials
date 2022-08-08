@@ -59,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func showLogin() {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let loginController = storyboard.instantiateViewController(withIdentifier: "login") as? LoginViewController
+    loginController?.api = api
     rootController = loginController
   }
   

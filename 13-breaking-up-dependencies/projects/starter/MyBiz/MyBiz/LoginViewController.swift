@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var passwordField: UITextField!
   @IBOutlet weak var signInButton: UIButton!
 
-  var api: API { return (UIApplication.shared.delegate as! AppDelegate).api }
+  var api: API!
   let skin: Skin = .login
 
   override func viewDidLoad() {

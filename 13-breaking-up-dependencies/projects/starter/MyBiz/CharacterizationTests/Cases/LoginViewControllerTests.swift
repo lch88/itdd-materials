@@ -42,6 +42,7 @@ class LoginViewControllerTests: XCTestCase {
       .instantiateViewController(withIdentifier: "login")
     as? LoginViewController
     UIApplication.appDelegate.userId = nil
+    sut.api = UIApplication.appDelegate.api
     sut.loadViewIfNeeded()
   }
   // 2
