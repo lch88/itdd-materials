@@ -33,6 +33,9 @@
 import Foundation
 import UIKit
 
+let userLoggedOutNotification =
+ Notification.Name("user logged out")
+
 protocol APIDelegate: AnyObject {
   func loginFailed(error: Error)
   func loginSucceeded(userId: String)
